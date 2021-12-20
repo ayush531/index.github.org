@@ -1,0 +1,181 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&display=swap");
+
+:root {
+  --rotatez: 0deg;
+}
+
+body {
+  margin: 0;
+  perspective: 2000px;
+  font-family: "Baloo 2";
+}
+
+.background {
+  position: absolute;
+  width: 120vw;
+  height: 120vh;
+  top: -10vh;
+  left: -10vw;
+  background: linear-gradient(to right, #e8cbc0, #636fa4);
+  transform: translatez(-400px);
+  overflow: hidden;
+
+  h1 {
+    color: #000a;
+    position: absolute;
+    font-size: 20px;
+    margin: 0;
+    top: 0px;
+    left: 8px;
+  }
+}
+
+main {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  animation: string 7s ease-in-out infinite alternate forwards;
+  
+   &.off {
+      animation: unset;
+    }
+
+  @keyframes string {
+    0% {
+      transform: translatex(-80px);
+    }
+    100% {
+      transform: translatex(0px);
+    }
+  }
+
+  .carousel {
+    position: absolute;
+    height: 500px;
+    width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotatex(-90deg) translatey(-400px) rotatez(var(--rotatez));
+    transform-style: preserve-3d;
+    animation: spin 7s ease-in-out infinite alternate forwards;
+    cursor: pointer;
+
+    &.off {
+      animation: unset;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotatex(-70deg) rotatey(-5deg) rotatez(0deg);
+      }
+      100% {
+        transform: rotatex(-110deg) rotatey(5deg) rotatez(210deg);
+      }
+    }
+
+    >div {
+      position: absolute;
+      width: 200px;
+      background: #c6ced2;
+      height: 120px;
+      border: 1px solid #fffa;
+      object-fit: cover;
+      border-radius: 5px;
+      transform-style: preserve-3d;
+      
+
+      &:before {
+        content: "";
+        height: 3px;
+        width: 500px;
+        position: absolute;
+        top: 0;
+        left: -75%;
+        background: rgb(115, 121, 125);
+        background: linear-gradient(
+          -90deg,
+          rgba(115, 121, 125, 1) 0%,
+          #b0cdd1 11%,
+          #ABA1B3 66%,
+         #ABA1B3 100%
+        );
+        transform: scalex(1.75) translatez(-351px) translatey(-250px)
+          rotatey(-90deg) rotatez(90deg);
+      }
+
+      &:after {
+        content: "";
+        background: rgb(198, 206, 210);
+        background: linear-gradient(
+          -90deg,
+          rgba(198, 206, 210, 1) 0%,
+          rgba(237, 248, 255, 1) 7%,
+          #b0cdd1 52%,
+          rgba(122, 132, 139, 1) 100%
+        );
+        position: absolute;
+        border-top: 1px solid #fffd;
+        top: 0;
+        right: 0;
+        height: 5px;
+        width: 100%;
+        transform: translatez(-175px) translatey(0px) rotatey(-90deg)
+          scalex(1.75);
+        // box-shadow: inset 2px 0px 3px 0px #000;
+      }
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 5px;
+        backface-visibility: hidden;
+      }
+
+      &:nth-child(1) {
+        top: 0;
+        transform: translate(0, -50%) rotatex(90deg) translateZ(100px);
+        &:before{
+          border: 2px solid #fffa;
+        }
+      }
+      &:nth-child(2) {
+        bottom: 0;
+        transform: translate(0, 50%) rotatex(-90deg) translateZ(100px) scale(-1);
+      }
+      &:nth-child(3) {
+        left: 0;
+        transform: translate(-50%) rotateZ(90deg) rotatex(-90deg)
+          translateZ(100px) scale(-1);
+      }
+      &:nth-child(4) {
+        right: 0;
+        transform: translate(50%) rotateZ(90deg) rotatex(90deg)
+          translateZ(100px);
+      }
+      &:nth-child(5) {
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%) rotateZ(-45deg) rotatex(90deg);
+      }
+      &:nth-child(6) {
+        bottom: 0;
+        left: 0;
+        transform: translate(-50%, 50%) rotateZ(45deg) rotatex(-90deg) scale(-1);
+      }
+      &:nth-child(7) {
+        bottom: 0;
+        right: 0;
+        transform: translate(50%, 50%) rotateZ(-45deg) rotatex(-90deg) scale(-1);
+      }
+      &:nth-child(8) {
+        top: 0;
+        right: 0;
+        transform: translate(50%, -50%) rotateZ(45deg) rotatex(90deg);
+      }
+    }
+  }
+}
